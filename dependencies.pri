@@ -1,4 +1,4 @@
 DEPENDENCIES += 
 INCLUDEPATHS += lib_platform/inc/
-LIBRARIES    +=
+LIBRARIES    += lib_platform
 
