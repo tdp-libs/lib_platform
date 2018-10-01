@@ -11,6 +11,8 @@
 
 struct lconv* localeconv(void);
 
+extern int errno;
+
 namespace std
 {
 template <typename T>
@@ -56,6 +58,12 @@ inline long long stoll(const string& str)
 }
 
 }
+
+#define TP_ENUM_HASH(T) \
+namespace std{template <>struct hash<T>{size_t operator()(const T& v) const \
+{ \
+  return hash<int>()(static_cast<int>(v)); \
+}};}
 
 #endif
 
