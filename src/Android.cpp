@@ -2,8 +2,6 @@
 
 #ifdef TDP_ANDROID
 
-int errno=0;
-
 namespace
 {
 struct lconv initLconv()

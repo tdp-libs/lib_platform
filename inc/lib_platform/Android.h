@@ -8,10 +8,9 @@
 #include <sstream>
 #include <stdlib.h>
 #include <locale.h>
+#include <errno.h>
 
 struct lconv* localeconv(void);
-
-extern int errno;
 
 namespace std
 {
