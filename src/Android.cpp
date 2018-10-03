@@ -1,5 +1,6 @@
 #include "lib_platform/Android.h"
 
+
 #ifdef TDP_ANDROID
 
 namespace
@@ -41,4 +42,6 @@ struct lconv* localeconv(void)
   return &androidHackLconv;
 }
 
+#else
+int lib_platform_NoAndroid=0;
 #endif

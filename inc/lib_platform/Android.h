@@ -64,6 +64,8 @@ namespace std{template <>struct hash<T>{size_t operator()(const T& v) const \
   return hash<int>()(static_cast<int>(v)); \
 }};}
 
+#else
+extern int lib_platform_NoAndroid;
 #endif
 
 #endif
