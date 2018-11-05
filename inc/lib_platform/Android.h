@@ -1,9 +1,17 @@
 #ifndef lib_platform_Android_h
 #define lib_platform_Android_h
 
-//PLATFORM_ABSTRACTIONS
-#ifdef TDP_ANDROID
+//The code in this file is here simply to work arround issues in GCC 4.9 used in Android. The NDK
+//has now switched over to Clang so this will not need to exist much longer.
 
+#ifdef TDP_ANDROID
+#if (defined(__GNUC__) && !defined(__clang__))
+#define TDP_ANDROID_GCC_COMPILER
+#endif
+#endif
+
+//PLATFORM_ABSTRACTIONS
+#ifdef TDP_ANDROID_GCC_COMPILER
 #include <string>
 #include <sstream>
 #include <stdlib.h>
@@ -65,6 +73,7 @@ namespace std{template <>struct hash<T>{size_t operator()(const T& v) const \
 }};}
 
 #else
+#define TP_ENUM_HASH(c)
 extern int lib_platform_NoAndroid;
 #endif
 
