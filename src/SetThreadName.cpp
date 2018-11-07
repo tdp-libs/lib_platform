@@ -1,8 +1,5 @@
 #include "lib_platform/SetThreadName.h"
 
-#include <thread>
-#include <string>
-
 namespace lib_platform
 {
 #ifdef TDP_WIN32 //=================================================================================
@@ -51,6 +48,26 @@ void setThreadName(std::thread& thread, const std::string& threadName)
   setThreadName(::GetThreadId( static_cast<HANDLE>( thread->native_handle())), threadName.c_str());
 }
 
+#elif defined(TDP_IOS)
+
+#include <pthread.h>
+
+//##################################################################################################
+void setThreadName(const std::string& threadName)
+{
+  std::string n = threadName;
+  if(n.size()>15)
+    n.resize(15);
+  pthread_setname_np(n.c_str());
+}
+
+//##################################################################################################
+void setThreadName(std::thread& thread, const std::string& threadName)
+{
+  (void)(thread);
+  (void)(threadName);
+}
+
 #else
 
 #include <sys/prctl.h>
@@ -72,5 +89,6 @@ void setThreadName(std::thread& thread, const std::string& threadName)
     n.resize(15);
   pthread_setname_np(thread.native_handle(), n.c_str());
 }
-}
 #endif
+
+}

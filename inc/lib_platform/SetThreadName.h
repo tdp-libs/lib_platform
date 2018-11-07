@@ -1,12 +1,8 @@
 #ifndef lib_platform_SetThreadName_h
 #define lib_platform_SetThreadName_h
 
+#include <thread>
 #include <string>
-
-namespace std
-{
-class thread;
-}
 
 namespace lib_platform
 {
