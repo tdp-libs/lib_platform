@@ -48,6 +48,26 @@ void setThreadName(std::thread& thread, const std::string& threadName)
   setThreadName(::GetThreadId( static_cast<HANDLE>( thread->native_handle())), threadName.c_str());
 }
 
+#elif defined(TDP_OSX)
+
+#include <pthread.h>
+
+//##################################################################################################
+void setThreadName(const std::string& threadName)
+{
+  std::string n = threadName;
+  if(n.size()>15)
+    n.resize(15);
+  pthread_setname_np(n.c_str());
+}
+
+//##################################################################################################
+void setThreadName(std::thread& thread, const std::string& threadName)
+{
+  (void)(thread);
+  (void)(threadName);
+}
+
 #elif defined(TDP_IOS)
 
 #include <pthread.h>
