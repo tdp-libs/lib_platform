@@ -10,6 +10,8 @@ HEADERS += inc/lib_platform/Polyfill.h
 HEADERS += inc/lib_platform/Android.h
 SOURCES += src/Android.cpp
 
+HEADERS += inc/lib_platform/OSX.h
+
 HEADERS += inc/lib_platform/SetThreadName.h
 SOURCES += src/SetThreadName.cpp
 
