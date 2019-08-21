@@ -3,7 +3,9 @@
 namespace lib_platform
 {
 #ifdef TDP_WIN32 //=================================================================================
-#include <windows.h>
+#if defined(_MSC_VER) && !defined(__INTEL_COMPILER)
+#include <Windows.h>
+#include <Processthreadsapi.h>
 
 const DWORD MS_VC_EXCEPTION=0x406D1388;
 
@@ -29,7 +31,7 @@ void setThreadName(uint32_t dwThreadID, const char* threadName)
 
   __try
   {
-    RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(ULONG_PTR), (ULONG_PTR*)&info );
+    RaiseException( MS_VC_EXCEPTION, 0, sizeof(info)/sizeof(ULONG_PTR), reinterpret_cast<ULONG_PTR*>(&info));
   }
   __except(EXCEPTION_EXECUTE_HANDLER)
   {
@@ -45,8 +47,84 @@ void setThreadName(const std::string& threadName)
 //##################################################################################################
 void setThreadName(std::thread& thread, const std::string& threadName)
 {
-  setThreadName(::GetThreadId( static_cast<HANDLE>( thread->native_handle())), threadName.c_str());
+  setThreadName(GetThreadId(static_cast<HANDLE>(thread.native_handle())), threadName.c_str());
 }
+
+#elif defined(__GCC__) || defined(__GNUC__)
+#include <windows.h>
+#include <processthreadsapi.h>
+#include <winnt.h>
+#include <winternl.h>
+
+#include <pshpack8.h>
+typedef struct
+{
+  DWORD dwType;
+  LPCSTR szName;
+  DWORD dwThreadID;
+  DWORD dwFlags;
+} THREADNAME_INFO;
+#include <poppack.h>
+
+//##################################################################################################
+static EXCEPTION_DISPOSITION NTAPI ignore_handler(EXCEPTION_RECORD*, void*, CONTEXT*, void*)
+{
+  return ExceptionContinueExecution;
+}
+
+//##################################################################################################
+void setThreadName(uint32_t dwThreadID, const char* threadName)
+{
+  static const DWORD MS_VC_EXCEPTION = 0x406D1388;
+
+  THREADNAME_INFO info;
+  info.dwType = 0x1000;
+  info.szName = threadName;
+  info.dwThreadID = dwThreadID;
+  info.dwFlags = 0;
+
+  // Push an exception handler to ignore all following exceptions
+  NT_TIB *tib = reinterpret_cast<NT_TIB*>(NtCurrentTeb());
+  EXCEPTION_REGISTRATION_RECORD rec;
+  rec.Next = tib->ExceptionList;
+  rec.Handler = ignore_handler;
+  tib->ExceptionList = &rec;
+
+  // Visual Studio and compatible debuggers receive thread names from the
+  // program through a specially crafted exception
+  RaiseException(MS_VC_EXCEPTION, 0, sizeof(info) / sizeof(ULONG_PTR), reinterpret_cast<ULONG_PTR*>(&info));
+
+  // Pop exception handler
+  tib->ExceptionList = tib->ExceptionList->Next;
+}
+
+//##################################################################################################
+void setThreadName(const std::string& threadName)
+{
+  setThreadName(GetCurrentThreadId(), threadName.c_str());
+}
+
+//##################################################################################################
+void setThreadName(std::thread& thread, const std::string& threadName)
+{
+  setThreadName(thread.native_handle(), threadName.c_str());
+}
+
+#else
+
+//##################################################################################################
+void setThreadName(const std::string&)
+{
+
+}
+
+//##################################################################################################
+void setThreadName(std::thread&, const std::string&)
+{
+
+}
+
+#endif
 
 #elif defined(TDP_IOS) //===========================================================================
 
