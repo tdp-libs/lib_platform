@@ -17,7 +17,7 @@
 
 //##################################################################################################
 //! Platform abstractions
-namespace tp_maps
+namespace lib_platform
 {
 }
 
