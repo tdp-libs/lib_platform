@@ -4,14 +4,14 @@
 //The code in this file is here simply to work arround issues in GCC 4.9 used in Android. The NDK
 //has now switched over to Clang so this will not need to exist much longer.
 
-#ifdef TDP_ANDROID
+#ifdef tp_qt_ANDROID
 #if (defined(__GNUC__) && !defined(__clang__))
-#define TDP_ANDROID_GCC_COMPILER
+#define tp_qt_ANDROID_GCC_COMPILER
 #endif
 #endif
 
 //PLATFORM_ABSTRACTIONS
-#ifdef TDP_ANDROID_GCC_COMPILER
+#ifdef tp_qt_ANDROID_GCC_COMPILER
 #include <string>
 #include <sstream>
 #include <stdlib.h>
