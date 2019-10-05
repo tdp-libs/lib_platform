@@ -1,7 +1,7 @@
 #include "lib_platform/Android.h"
 
 
-#ifdef tp_qt_ANDROID_GCC_COMPILER
+#ifdef TP_ANDROID_GCC_COMPILER
 
 namespace
 {

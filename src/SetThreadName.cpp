@@ -2,7 +2,7 @@
 
 namespace lib_platform
 {
-#ifdef tp_qt_WIN32 //=================================================================================
+#ifdef TP_WIN32 //=================================================================================
 #if defined(_MSC_VER) && !defined(__INTEL_COMPILER)
 #include <Windows.h>
 #include <Processthreadsapi.h>
@@ -126,7 +126,7 @@ void setThreadName(std::thread&, const std::string&)
 
 #endif
 
-#elif defined(tp_qt_IOS) //===========================================================================
+#elif defined(TP_IOS) //===========================================================================
 
 #include <pthread.h>
 
@@ -146,7 +146,7 @@ void setThreadName(std::thread& thread, const std::string& threadName)
   (void)(threadName);
 }
 
-#elif defined(tp_qt_OSX) //===========================================================================
+#elif defined(TP_OSX) //===========================================================================
 
 #include <pthread.h>
 
@@ -165,7 +165,7 @@ void setThreadName(std::thread& thread, const std::string& threadName)
   (void)(thread);
   (void)(threadName);
 }
-#elif defined(tp_qt_EMSCRIPTEN) //====================================================================
+#elif defined(TP_EMSCRIPTEN) //====================================================================
 
 //##################################################################################################
 void setThreadName(const std::string&)

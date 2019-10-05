@@ -1,7 +1,7 @@
 #ifndef lib_platform_Globals_h
 #define lib_platform_Globals_h
 
-#ifdef tp_qt_WIN32
+#ifdef TP_WIN32
 #  define TP_EXPORT //__declspec(dllexport)
 #  define TP_IMPORT //__declspec(dllimport)
 #else
