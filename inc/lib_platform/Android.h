@@ -5,7 +5,7 @@
 //has now switched over to Clang so this will not need to exist much longer.
 
 #ifdef TP_ANDROID
-#if (defined(__GNUC__) && !defined(__clang__))
+#if(defined(__GNUC__) && !defined(__clang__))
 #define TP_ANDROID_GCC_COMPILER
 #endif
 #endif
