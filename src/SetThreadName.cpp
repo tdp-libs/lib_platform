@@ -57,6 +57,7 @@ void setThreadName(std::thread& thread, const std::string& threadName)
 #include <winternl.h>
 
 #include <pshpack8.h>
+
 typedef struct
 {
   DWORD dwType;

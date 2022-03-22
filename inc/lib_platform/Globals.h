@@ -2,8 +2,13 @@
 #define lib_platform_Globals_h
 
 #ifdef TP_WIN32
-#  define TP_EXPORT /*__declspec(dllexport)*/
-#  define TP_IMPORT /*__declspec(dllimport)*/
+#  ifdef TP_WIN32_STATIC
+#    define TP_EXPORT
+#    define TP_IMPORT
+#  else
+#    define TP_EXPORT __declspec(dllexport)
+#    define TP_IMPORT __declspec(dllimport)
+#  endif
 #else
 #  define TP_EXPORT
 #  define TP_IMPORT
