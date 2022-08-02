@@ -1,8 +1,6 @@
 #ifndef lib_platform_Warnings_h
 #define lib_platform_Warnings_h
 
-#include "lib_platform/Globals.h"
-
 #ifdef __clang__
 #pragma clang diagnostic ignored "-Wpadded"
 #pragma clang diagnostic ignored "-Wundefined-func-template"
