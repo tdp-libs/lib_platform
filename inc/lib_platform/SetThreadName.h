@@ -10,11 +10,11 @@ namespace lib_platform
 {
 //##################################################################################################
 //! Set the name of the calling thread.
-void LIB_PLATFORM_SHARED_EXPORT setThreadName(const std::string& threadName);
+void LIB_PLATFORM_EXPORT setThreadName(const std::string& threadName);
 
 //##################################################################################################
 //! set the name of a thread.
-void LIB_PLATFORM_SHARED_EXPORT setThreadName(std::thread& thread, const std::string& threadName);
+void LIB_PLATFORM_EXPORT setThreadName(std::thread& thread, const std::string& threadName);
 }
 
 #endif

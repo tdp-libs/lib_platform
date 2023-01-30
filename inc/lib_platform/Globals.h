@@ -15,9 +15,9 @@
 #endif
 
 #if defined(LIB_PLATFORM_LIBRARY)
-#  define LIB_PLATFORM_SHARED_EXPORT TP_EXPORT
+#  define LIB_PLATFORM_EXPORT TP_EXPORT
 #else
-#  define LIB_PLATFORM_SHARED_EXPORT TP_IMPORT
+#  define LIB_PLATFORM_EXPORT TP_IMPORT
 #endif
 
 #define LIB_PLATFORM_NONCOPYABLE(T) T(const T&)=delete; T& operator=(const T&)=delete; T(T&&)=delete; T& operator=(T&&)=delete
