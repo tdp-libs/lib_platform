@@ -22,6 +22,14 @@
 
 #define LIB_PLATFORM_NONCOPYABLE(T) T(const T&)=delete; T& operator=(const T&)=delete; T(T&&)=delete; T& operator=(T&&)=delete
 
+#ifndef TP_GIT_BRANCH
+#define TP_GIT_BRANCH
+#endif
+
+#ifndef TP_GIT_COMMIT
+#define TP_GIT_COMMIT
+#endif
+
 //##################################################################################################
 //! Platform abstractions
 namespace lib_platform
