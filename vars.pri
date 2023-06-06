@@ -18,6 +18,8 @@ HEADERS += inc/lib_platform/OSX.h
 HEADERS += inc/lib_platform/SetThreadName.h
 SOURCES += src/SetThreadName.cpp
 
+HEADERS += inc/lib_platform/Format.h
+
 HEADERS += inc/lib_platform/Globals.h
 #SOURCES += src/Globals.cpp
 
