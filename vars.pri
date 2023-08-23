@@ -10,6 +10,9 @@ HEADERS += inc/lib_platform/Polyfill.h
 HEADERS += inc/lib_platform/RandomDevice.h
 SOURCES += src/RandomDevice.cpp
 
+HEADERS += inc/lib_platform/Debug.h
+SOURCES += src/Debug.cpp
+
 HEADERS += inc/lib_platform/Android.h
 SOURCES += src/Android.cpp
 
