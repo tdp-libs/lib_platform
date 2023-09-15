@@ -30,6 +30,10 @@
 #define TP_GIT_COMMIT
 #endif
 
+#ifndef TP_GIT_COMMIT_NUMBER
+#define TP_GIT_COMMIT_NUMBER
+#endif
+
 //##################################################################################################
 //! Platform abstractions
 namespace lib_platform
