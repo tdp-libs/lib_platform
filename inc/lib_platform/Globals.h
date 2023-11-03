@@ -1,6 +1,9 @@
 #ifndef lib_platform_Globals_h
 #define lib_platform_Globals_h
 
+#include <stddef.h>
+#include <stdint.h>
+
 #ifdef TP_WIN32
 #  ifdef TP_WIN32_STATIC
 #    define TP_EXPORT
