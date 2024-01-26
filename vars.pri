@@ -26,4 +26,7 @@ HEADERS += inc/lib_platform/Format.h
 HEADERS += inc/lib_platform/Globals.h
 #SOURCES += src/Globals.cpp
 
+HEADERS += inc/lib_platform/Console.h
+SOURCES += src/Console.cpp
+
 
