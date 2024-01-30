@@ -2,6 +2,7 @@
 
 #ifdef WIN32
 #include <windows.h>
+#include <iostream>
 #endif
 
 namespace lib_platform
