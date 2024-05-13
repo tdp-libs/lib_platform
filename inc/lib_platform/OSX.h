@@ -25,6 +25,7 @@ void random_shuffle( RandomIt first, RandomIt last, RandomFunc&&)
   }());
 }
 
+//##################################################################################################
 template< class RandomIt >
 void random_shuffle( RandomIt first, RandomIt last)
 {

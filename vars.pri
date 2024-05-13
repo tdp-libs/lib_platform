@@ -21,6 +21,9 @@ HEADERS += inc/lib_platform/OSX.h
 HEADERS += inc/lib_platform/SetThreadName.h
 SOURCES += src/SetThreadName.cpp
 
+HEADERS += inc/lib_platform/Exit.h
+SOURCES += src/Exit.cpp
+
 HEADERS += inc/lib_platform/Format.h
 
 HEADERS += inc/lib_platform/Globals.h
