@@ -1,7 +1,7 @@
 #ifndef lib_platform_Format_h
 #define lib_platform_Format_h
 
-#if TP_CPP_VERSION>=20
+#if __cplusplus >= 202002L
 #include <format>
 #else
 #include <sstream>
