@@ -1,14 +1,12 @@
-#ifndef lib_platform_Format_h
-#define lib_platform_Format_h
+#pragma once
 
-#if __cplusplus >= 202002L
-#include <format>
-#else
 #include <sstream>
 #include <string>
 
-namespace std
+namespace lib_platform
 {
+
+//##################################################################################################
 // std::format C++20 short implementation
 template<typename T>
 void format_helper(std::ostringstream& oss, std::string_view& str, const T& value)
@@ -21,6 +19,7 @@ void format_helper(std::ostringstream& oss, std::string_view& str, const T& valu
   str = str.substr(closeBracket + 1);
 }
 
+//##################################################################################################
 template<typename... Targs>
 std::string format(std::string_view str, Targs...args)
 {
@@ -30,7 +29,3 @@ std::string format(std::string_view str, Targs...args)
   return oss.str();
 }
 }
-#endif
-
-
-#endif
